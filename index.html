@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#5b3924">
+
+  <title>WoodCraft Plans</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f1ec;
+      color: #29231f;
+      line-height: 1.5;
+    }
+
+    header {
+      background: #5b3924;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 26px;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    main<!-- HOME SCREEN -->
+
+<div id="homeScreen">
+
+  <h2 class="section-title">Featured Project</h2>
+
+  <div class="project-card">
+
+    <div class="project-image">
+      🪴
+    </div>
+
+    <div class="project-content">
+
+      <h2 class="project-title">
+        Simple Garden Planter
+      </h2>
+
+      <p class="description">
+        A simple beginner project using basic woodworking
+        tools and timber.
+      </p>
+
+      <button class="start-button"
+              onclick="openProject()">
+        View Project →
+      </button>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- PLANS SCREEN -->
+
+<div id="plansScreen" style="display:none;">
+
+  <h2 class="section-title">
+    📚 Project Plans
+  </h2>
+
+  <p class="description">
+    Choose a project to start building.
+  </p>
+
+
+  <div class="project-card">
+
+    <div class="project-image">
+      🪴
+    </div>
+
+    <div class="project-content">
+
+      <h2 class="project-title">
+        Simple Garden Planter
+      </h2>
+
+      <p class="description">
+        Beginner • 2–3 hours
+      </p>
+
+      <button class="start-button"
+              onclick="openProject()">
+        Open Plan →
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="project-card">
+
+    <div class="project-image">
+      🪑
+    </div>
+
+    <div class="project-content">
+
+      <h2 class="project-title">
+        Simple Garden Bench
+      </h2>
+
+      <p class="description">
+        Beginner • 3–4 hours
+      </p>
+
+      <button class="start-button"
+              onclick="alert('Garden Bench plan coming next!')">
+        Open Plan →
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="project-card">
+
+    <div class="project-image">
+      ☕
+    </div>
+
+    <div class="project-content">
+
+      <h2 class="project-title">
+        Coffee Table
+      </h2>
+
+      <p class="description">
+        Intermediate • 4–6 hours
+      </p>
+
+      <button class="start-button"
+              onclick="alert('Coffee Table plan coming soon!')">
+        Open Plan →
+      </button>
+
+    </div>
+
+  </div>
+
+</div> {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+
+    .project-image {
+      height: 190px;
+      background: linear-gradient(
+        135deg,
+        #c89b6d,
+        #8b5e3c
+      );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: white;
+      font-size: 60px;
+    }
+
+    .project-content {
+      padding: 20px;
+    }
+
+    .project-title {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .description {
+      color: #6d625a;
+      margin-bottom: 18px;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .detail {
+      background: #f4f1ec;
+      padding: 12px 5px;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    .detail strong {
+      display: block;
+      font-size: 17px;
+    }
+
+    .detail span {
+      font-size: 12px;
+      color: #756b63;
+    }
+
+    .section-title {
+      font-size: 20px;
+      margin: 25px 0 12px;
+    }
+
+    .list {
+      list-style: none;
+    }
+
+    .list li {
+      background: #f8f6f3;
+      padding: 12px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+    }
+
+    .start-button {
+      width: 100%;
+      border: none;
+      background: #5b3924;
+      color: white;
+      padding: 16px;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .start-button:hover {
+      background: #432918;
+    }
+
+    .step {
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    .step-number {
+      display: inline-block;
+      background: #5b3924;
+      color: white;
+      padding: 7px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .step h2 {
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      color: #5f554d;
+      margin-bottom: 20px;
+    }
+
+    .next-button {
+      width: 100%;
+      border: none;
+      background: #7a573c;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .back-button {
+      width: 100%;
+      border: 1px solid #7a573c;
+      background: white;
+      color: #5b3924;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .progress {
+      height: 8px;
+      background: #ddd6cf;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 20%;
+      background: #5b3924;
+      transition: width 0.3s;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #81766e;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="app-logo">🪚</div>
+
+  <div>
+    <h1>WoodCraft Plans</h1>
+    <p>Build it. Step by step.</p>
+  </div>
+</header>
+
+<div class="app-nav">
+  <button class="nav-button active">
+    🏠
+    <span>Home</span>
+  </button>
+
+  <button class="nav-button">
+    📚
+    <span>Plans</span>
+  </button>
+
+  <button class="nav-button">
+    📐
+    <span>Tools</span>
+  </button>
+
+  <button class="nav-button">
+    ⭐
+    <span>Saved</span>
+  </button>
+</div>
+
+<main>
+
+  <!-- PROJECT INTRO -->
+  <div id="projectIntro" class="project-card">
+
+    <div class="project-image">
+      🪵
+    </div>
+
+    <div class="project-content">
+
+      <h2 class="project-title">
+        Simple Garden Planter
+      </h2>
+
+      <p class="description">
+        A beginner-friendly wooden planter that can be
+        built with basic tools.
+      </p>
+
+      <div class="details">
+
+        <div class="detail">
+          <strong>Beginner</strong>
+          <span>Difficulty</span>
+        </div>
+
+        <div class="detail">
+          <strong>2–3 hrs</strong>
+          <span>Build time</span>
+        </div>
+
+        <div class="detail">
+          <strong>£25</strong>
+          <span>Estimated cost</span>
+        </div>
+
+      </div>
+
+     <h3 class="section-title">
+  📐 Cut List
+</h3>
+
+<ul class="list">
+  <li>
+    <strong>2 × Side Boards</strong><br>
+    600 mm × 250 mm × 18 mm
+  </li>
+
+  <li>
+    <strong>2 × End Boards</strong><br>
+    364 mm × 250 mm × 18 mm
+  </li>
+
+  <li>
+    <strong>4 × Bottom Boards</strong><br>
+    400 mm × 90 mm × 18 mm
+  </li>
+</ul> <h3 class="section-title">
+        🛠 Tools
+      </h3>
+
+      <ul class="list">
+        <li>📏 Tape measure</li>
+        <li>✏️ Pencil</li>
+        <li>⬜ Square</li>
+        <li>🪚 Saw</li>
+        <li>🔩 Drill</li>
+        <li>🔧 Screwdriver</li>
+      </ul>
+
+      <h3 class="section-title">
+        🪵 Materials
+      </h3>
+
+      <ul class="list">
+        <li>4 × timber boards</li>
+        <li>Exterior wood screws</li>
+        <li>Exterior wood treatment</li>
+      </ul>
+
+      <br>
+
+      <button class="start-button"
+              onclick="startProject()">
+        Start Project →
+      </button>
+
+    </div>
+  </div>
+
+
+  <!-- STEP-BY-STEP PLAN -->
+
+  <div id="projectSteps" class="project-card" style="display:none;">
+
+    <div class="project-content">
+
+      <div class="progress">
+        <div id="progressBar"
+             class="progress-bar"></div>
+      </div>
+
+      <!-- STEP 1 -->
+
+      <div class="step active">
+
+        <span class="step-number">
+          STEP 1 OF 5
+        </span>
+
+        <h2>Measure & Mark</h2>
+
+        <p>
+          Measure your timber carefully and mark each
+          cut using a pencil and square.
+        </p>
+
+        <button class="next-button"
+                onclick="nextStep()">
+          Next Step →
+        </button>
+
+      </div>
+
+
+      <!-- STEP 2 -->
+
+      <div class="step">
+
+        <span class="step-number">
+          STEP 2 OF 5
+        </span>
+
+        <h2>Cut the Timber</h2>
+
+        <p>
+          Cut each piece along your marked lines.
+          Check every measurement before making the cut.
+        </p>
+
+        <button class="next-button"
+                onclick="nextStep()">
+          Next Step →
+        </button>
+
+        <button class="back-button"
+                onclick="previousStep()">
+          ← Previous
+        </button>
+
+      </div>
+
+
+      <!-- STEP 3 -->
+
+      <div class="step">
+
+        <span class="step-number">
+          STEP 3 OF 5
+        </span>
+
+        <h2>Build the Sides</h2>
+
+        <p>
+          Position the side pieces together. Pre-drill
+          the screw holes and secure the pieces with
+          exterior screws.
+        </p>
+
+        <button class="next-button"
+                onclick="nextStep()">
+          Next Step →
+        </button>
+
+        <button class="back-button"
+                onclick="previousStep()">
+          ← Previous
+        </button>
+
+      </div>
+
+
+      <!-- STEP 4 -->
+
+      <div class="step">
+
+        <span class="step-number">
+          STEP 4 OF 5
+        </span>
+
+        <h2>Assemble the Planter</h2>
+
+        <p>
+          Join the remaining pieces together. Check that
+          the planter is square before tightening all
+          screws.
+        </p>
+
+        <button class="next-button"
+                onclick="nextStep()">
+          Next Step →
+        </button>
+
+        <button class="back-button"
+                onclick="previousStep()">
+          ← Previous
+        </button>
+
+      </div>
+
+
+      <!-- STEP 5 -->
+
+      <div class="step">
+
+        <span class="step-number">
+          STEP 5 OF 5
+        </span>
+
+        <h2>Finish the Planter 🎉</h2>
+
+        <p>
+          Sand any rough edges and apply a suitable
+          exterior wood treatment. Allow it to dry
+          according to the manufacturer's instructions.
+        </p>
+
+        <button class="next-button"
+                onclick="finishProject()">
+          Finish Project ✓
+        </button>
+
+        <button class="back-button"
+                onclick="previousStep()">
+          ← Previous
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  WoodCraft Plans — Your projects, one step at a time.
+</footer>
+
+
+function showHome() {
+
+  document.getElementById("homeScreen").style.display = "block";
+
+  document.getElementById("plansScreen").style.display = "none";
+
+  document.getElementById("projectIntro").style.display = "none";
+
+  document.getElementById("projectSteps").style.display = "none";
+
+}
+
+
+function showPlans() {
+
+  document.getElementById("homeScreen").style.display = "none";
+
+  document.getElementById("plansScreen").style.display = "block";
+
+  document.getElementById("projectIntro").style.display = "none";
+
+  document.getElementById("projectSteps").style.display = "none";
+
+}
+
+
+function openProject() {
+
+  document.getElementById("homeScreen").style.display = "none";
+
+  document.getElementById("plansScreen").style.display = "none";
+
+  document.getElementById("projectIntro").style.display = "block";
+
+  document.getElementById("projectSteps").style.display = "none";
+
+}<script>
+
+  let currentStep = 0;
+
+  const steps = document.querySelectorAll(".step");
+
+  function startProject() {
+
+    document.getElementById("projectIntro").style.display = "none";
+
+    document.getElementById("projectSteps").style.display = "block";
+
+    currentStep = 0;
+
+    showStep();
+
+  }
+
+
+  function showStep() {
+
+    steps.forEach(function(step, index) {
+
+      step.classList.remove("active");
+
+      if (index === currentStep) {
+        step.classList.add("active");
+      }
+
+    });
+
+    const progress =
+      ((currentStep + 1) / steps.length) * 100;
+
+    document.getElementById("progressBar").style.width =
+      progress + "%";
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+
+  function nextStep() {
+
+    if (currentStep < steps.length - 1) {
+
+      currentStep++;
+
+      showStep();
+
+    }
+
+  }
+
+
+  function previousStep() {
+
+    if (currentStep > 0) {
+
+      currentStep--;
+
+      showStep();
+
+    }
+
+  }
+
+
+  function finishProject() {
+
+    alert(
+      "🎉 Project complete! Great job."
+    );
+
+  }
+
+</script>
+
+</body>
+</html>
