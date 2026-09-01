@@ -623,7 +623,43 @@
 </footer>
 
 
-<script>
+function showHome() {
+
+  document.getElementById("homeScreen").style.display = "block";
+
+  document.getElementById("plansScreen").style.display = "none";
+
+  document.getElementById("projectIntro").style.display = "none";
+
+  document.getElementById("projectSteps").style.display = "none";
+
+}
+
+
+function showPlans() {
+
+  document.getElementById("homeScreen").style.display = "none";
+
+  document.getElementById("plansScreen").style.display = "block";
+
+  document.getElementById("projectIntro").style.display = "none";
+
+  document.getElementById("projectSteps").style.display = "none";
+
+}
+
+
+function openProject() {
+
+  document.getElementById("homeScreen").style.display = "none";
+
+  document.getElementById("plansScreen").style.display = "none";
+
+  document.getElementById("projectIntro").style.display = "block";
+
+  document.getElementById("projectSteps").style.display = "none";
+
+}<script>
 
   let currentStep = 0;
 
