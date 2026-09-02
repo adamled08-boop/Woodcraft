@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#5b3924">
+<title>WoodCraft Plans</title>
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f1ec;
+    color: #29231f;
+    line-height: 1.5;
+    padding-bottom: 70px;
+  }
+
+  header {
+    background: #5b3924;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+  header .app-logo { font-size: 28px; margin-bottom: 4px; }
+  header h1 { font-size: 26px; margin-bottom: 5px; }
+  header p { font-size: 14px; opacity: 0.9; }
+
+  main { max-width: 700px; margin: auto; padding: 20px; }
+
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  .welcome { margin-bottom: 20px; }
+  .welcome h2 { font-size: 22px; margin-bottom: 8px; }
+  .welcome p { color: #6d625a; }
+
+  .home-actions { display: grid; gap: 12px; margin: 20px 0 30px; }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .feature-card {
+    background: white;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+
+  .feature-card .icon { font-size: 28px; margin-bottom: 8px; }
+  .feature-card h3 { font-size: 14px; margin-bottom: 4px; }
+  .feature-card p { font-size: 12px; color: #6d625a; }
+
+  .search-box {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #ddd6cf;
+    background: white;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .project-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+  }
+
+  .project-image {
+    height: 160px;
+    background: linear-gradient(135deg, #c89b6d, #8b5e3c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 54px;
+    position: relative;
+  }
+
+  .save-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .project-content { padding: 20px; }
+  .project-title { font-size: 21px; margin-bottom: 8px; }
+  .description { color: #6d625a; margin-bottom: 18px; }
+
+  .details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .detail {
+    background: #f4f1ec;
+    padding: 12px 5px;
+    text-align: center;
+    border-radius: 10px;
+  }
+
+  .detail strong { display: block; font-size: 16px; }
+  .detail span { font-size: 12px; color: #756b63; }
+
+  .section-title { font-size: 19px; margin: 22px 0 12px; }
+
+  .list { list-style: none; }
+  .list li {
+    background: #f8f6f3;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+  }
+
+  .step-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .step-list input[type="checkbox"] {
+    margin-top: 3px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .step-list .step-text.done {
+    text-decoration: line-through;
+    color: #9a8f85;
+  }
+
+  .step-list .step-title-line { font-weight: bold; margin-bottom: 3px; }
+
+  .btn {
+    width: 100%;
+    border: none;
+    background: #5b3924;
+    color: white;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .btn:hover { background: #432918; }
+
+  .btn.secondary {
+    background: white;
+    color: #5b3924;
+    border: 1px solid #7a573c;
+  }
+
+  .btn.danger {
+    background: white;
+    color: #b23b3b;
+    border: 1px solid #b23b3b;
+  }
+
+  .btn-row { display: grid; gap: 10px; margin-top: 10px; }
+
+  .progress {
+    height: 10px;
+    background: #ddd6cf;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: #5b3924;
+    transition: width 0.3s;
+  }
+
+  .progress-label {
+    font-size: 13px;
+    color: #6d625a;
+    margin-bottom: 8px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #5b3924;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .form-group { margin-bottom: 16px; }
+
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .form-group select,
+  .form-group input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd6cf;
+    background: white;
+    font-size: 16px;
+  }
+
+  .note {
+    background: #fbf2df;
+    border: 1px solid #eadfb8;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #6d5a2c;
+    margin-bottom: 18px;
+  }
+
+  .error-msg {
+    background: #fbe4e4;
+    border: 1px solid #eab8b8;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #8a2f2f;
+    margin-bottom: 16px;
+  }
+
+  .result-box {
+    background: white;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    margin-top: 10px;
+  }
+
+  .total-line {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    padding: 16px;
+    background: #f4f1ec;
+    border-radius: 10px;
+    margin-top: 14px;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #9a8f85;
+  }
+
+  .empty-state .icon { font-size: 40px; margin-bottom: 10px; }
+
+  .saved-card {
+    background: white;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    margin-bottom: 14px;
+  }
+
+  .saved-card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .saved-card-icon { font-size: 30px; }
+  .saved-card-title { font-size: 16px; font-weight: bold; }
+  .saved-card-sub { font-size: 12px; color: #6d625a; }
+
+  footer {
+    text-align: center;
+    padding: 30px 20px 90px;
+    color: #81766e;
+    font-size: 13px;
+  }
+
+  .app-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    background: white;
+    border-top: 1px solid #e6e0d8;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    z-index: 10;
+  }
+
+  .nav-button {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 10px 0 8px;
+    font-size: 20px;
+    color: #9a8f85;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .nav-button span { font-size: 11px; }
+  .nav-button.active { color: #5b3924; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="app-logo">🪚</div>
+  <h1>WoodCraft Plans</h1>
+  <p>Build it. Step by step.</p>
+</header>
+
+<main>
+
+  <!-- HOME SCREEN -->
+  <div id="homeScreen" class="screen active">
+    <div class="welcome">
+      <h2>Welcome back 👋</h2>
+      <p>Plan your next woodworking project from start to finish.</p>
+    </div>
+
+    <div class="home-actions">
+      <button class="btn" onclick="showPlans()">📚 Browse Plans</button>
+      <button class="btn secondary" onclick="showBuild()">🔨 Build Your Own</button>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">📚</div>
+        <h3>Project Plans</h3>
+        <p>Step-by-step guides</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📐</div>
+        <h3>Cut Lists</h3>
+        <p>Exact board sizes</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">💷</div>
+        <h3>Cost Calculator</h3>
+        <p>Estimate your spend</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">⭐</div>
+        <h3>Save Projects</h3>
+        <p>Track your progress</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANS SCREEN -->
+  <div id="plansScreen" class="screen">
+    <h2 class="section-title">📚 Project Plans</h2>
+    <input type="text" id="searchBox" class="search-box" placeholder="Search projects..." oninput="renderPlansList()">
+    <div id="plansList"></div>
+  </div>
+
+  <!-- PROJECT INTRO -->
+  <div id="introScreen" class="screen">
+    <span class="back-link" onclick="showPlans()">← Back to Plans</span>
+    <div id="introCard" class="project-card"></div>
+  </div>
+
+  <!-- STEP-BY-STEP PLAN -->
+  <div id="stepsScreen" class="screen">
+    <span class="back-link" id="stepsBackLink">← Back</span>
+    <div class="project-card">
+      <div class="project-content">
+        <h2 id="stepsTitle" class="project-title"></h2>
+        <div class="progress-label" id="progressLabel"></div>
+        <div class="progress">
+          <div id="progressBar" class="progress-bar" style="width:0%"></div>
+        </div>
+        <ul class="list step-list" id="stepsContainer"></ul>
+        <div class="btn-row">
+          <button class="btn" onclick="finishProject()">Finish Project ✓</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUILD YOUR OWN SCREEN -->
+  <div id="buildScreen" class="screen">
+    <h2 class="section-title">🔨 Build Your Own</h2>
+    <div class="note">
+      This is a basic planning calculator only. It is <strong>not engineering-certified</strong> —
+      always double-check measurements before cutting real timber.
+    </div>
+
+    <div class="form-group">
+      <label for="buildType">Project type</label>
+      <select id="buildType">
+        <option value="box">Planter / Box</option>
+        <option value="shelf">Simple Shelf Unit</option>
+        <option value="bench">Simple Bench</option>
+        <option value="table">Simple Table</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="buildWidth">Width (mm)</label>
+      <input type="number" id="buildWidth" placeholder="e.g. 600">
+    </div>
+
+    <div class="form-group">
+      <label for="buildHeight">Height (mm)</label>
+      <input type="number" id="buildHeight" placeholder="e.g. 400">
+    </div>
+
+    <div class="form-group">
+      <label for="buildDepth">Depth (mm)</label>
+      <input type="number" id="buildDepth" placeholder="e.g. 300">
+    </div>
+
+    <div class="form-group">
+      <label for="buildThickness">Timber thickness (mm)</label>
+      <input type="number" id="buildThickness" placeholder="e.g. 18">
+    </div>
+
+    <button class="btn" onclick="generateCutList()">Generate Cut List</button>
+
+    <div id="buildError"></div>
+    <div id="buildResult"></div>
+  </div>
+
+  <!-- TOOLS SCREEN -->
+  <div id="toolsScreen" class="screen">
+    <h2 class="section-title">📐 Cost Calculator</h2>
+
+    <div class="form-group">
+      <label for="costTimber">Timber cost (£)</label>
+      <input type="number" id="costTimber" placeholder="0.00">
+    </div>
+
+    <div class="form-group">
+      <label for="costHardware">Hardware cost (£)</label>
+      <input type="number" id="costHardware" placeholder="0.00">
+    </div>
+
+    <div class="form-group">
+      <label for="costFinish">Finish / paint cost (£)</label>
+      <input type="number" id="costFinish" placeholder="0.00">
+    </div>
+
+    <button class="btn" onclick="calculateCost()">Calculate Total</button>
+
+    <div id="costResult"></div>
+
+    <h2 class="section-title">🧰 Workshop Tools</h2>
+    <ul class="list">
+      <li>📏 Tape measure</li>
+      <li>✏️ Pencil</li>
+      <li>⬜ Square</li>
+      <li>🪚 Saw</li>
+      <li>🔩 Drill</li>
+      <li>🔧 Screwdriver</li>
+      <li>🗜️ Clamps</li>
+      <li>🧽 Sander / sandpaper</li>
+    </ul>
+  </div>
+
+  <!-- SAVED SCREEN -->
+  <div id="savedScreen" class="screen">
+    <h2 class="section-title">⭐ Saved Projects</h2>
+    <div id="savedList"></div>
+  </div>
+
+</main>
+
+<footer>
+  WoodCraft Plans — Your projects, one step at a time.
+</footer>
+
+<div class="app-nav">
+  <button class="nav-button active" data-nav="home" onclick="showHome()">🏠<span>Home</span></button>
+  <button class="nav-button" data-nav="plans" onclick="showPlans()">📚<span>Plans</span></button>
+  <button class="nav-button" data-nav="build" onclick="showBuild()">🔨<span>Build</span></button>
+  <button class="nav-button" data-nav="tools" onclick="showTools()">📐<span>Tools</span></button>
+  <button class="nav-button" data-nav="saved" onclick="showSaved()">⭐<span>Saved</span></button>
+</div>
+
+<script>
+  // =========================================================
+  // PROJECT DATA — add a new project by adding one object here.
+  // =========================================================
+  const projects = [
+    {
+      id: "planter",
+      icon: "🪴",
+      title: "Simple Garden Planter",
+      description: "A beginner-friendly outdoor planter box.",
+      difficulty: "Beginner",
+      time: "2–3 hrs",
+      cost: "£25",
+      materials: ["Exterior-rated timber", "Exterior-rated wood screws", "Exterior wood treatment", "Sandpaper"],
+      tools: ["Tape measure", "Pencil", "Square", "Saw", "Drill", "Screwdriver", "Sandpaper"],
+      cutList: [
+        { label: "2 × Side Board", size: "600 × 250 × 18 mm" },
+        { label: "2 × End Board", size: "364 × 250 × 18 mm" },
+        { label: "4 × Bottom Board", size: "400 × 90 × 18 mm" }
+      ],
+      steps: [
+        "Measure and mark all timber carefully.",
+        "Cut the timber to the required sizes.",
+        "Sand cut edges and remove splinters.",
+        "Build the side and end sections.",
+        "Attach the bottom boards, leaving small drainage gaps.",
+        "Apply suitable exterior wood treatment."
+      ]
+    },
+    {
+      id: "bench",
+      icon: "🪑",
+      title: "Simple Garden Bench",
+      description: "A straightforward outdoor bench suitable for a beginner.",
+      difficulty: "Beginner",
+      time: "3–4 hrs",
+      cost: "£45",
+      materials: ["Exterior-rated timber", "Exterior-rated wood screws", "Exterior wood treatment", "Sandpaper"],
+      tools: ["Tape measure", "Pencil", "Square", "Saw", "Drill", "Screwdriver", "Clamps", "Sandpaper"],
+      cutList: [
+        { label: "3 × Seat Board", size: "1200 × 140 × 38 mm" },
+        { label: "4 × Leg", size: "400 × 90 × 38 mm" },
+        { label: "2 × Support", size: "1000 × 90 × 38 mm" }
+      ],
+      steps: [
+        "Measure and mark the timber.",
+        "Cut all pieces to size.",
+        "Build the leg frames.",
+        "Attach the supports.",
+        "Attach and align the seat boards.",
+        "Sand the edges and apply exterior finish."
+      ]
+    },
+    {
+      id: "coffee-table",
+      icon: "☕",
+      title: "Simple Coffee Table",
+      description: "A compact coffee table for the home.",
+      difficulty: "Intermediate",
+      time: "4–6 hrs",
+      cost: "£60",
+      materials: ["Timber boards", "Wood screws", "Wood glue", "Sandpaper", "Wood finish"],
+      tools: ["Tape measure", "Square", "Saw", "Drill", "Screwdriver", "Clamps", "Sander"],
+      cutList: [
+        { label: "2 × Long Apron", size: "1000 × 90 × 20 mm" },
+        { label: "2 × Short Apron", size: "500 × 90 × 20 mm" },
+        { label: "4 × Leg", size: "400 × 70 × 70 mm" },
+        { label: "5 × Top Board", size: "1100 × 120 × 20 mm" }
+      ],
+      steps: [
+        "Inspect and prepare the timber.",
+        "Measure and cut all pieces.",
+        "Build the table frame.",
+        "Prepare and align the tabletop boards.",
+        "Attach the tabletop.",
+        "Sand the complete table.",
+        "Apply the chosen finish."
+      ]
+    },
+    {
+      id: "bookshelf",
+      icon: "📚",
+      title: "Simple Bookshelf",
+      description: "A straightforward shelf unit for books and everyday storage.",
+      difficulty: "Beginner",
+      time: "3–5 hrs",
+      cost: "£50",
+      materials: ["Timber boards", "Wood screws", "Wood glue", "Sandpaper", "Wood finish"],
+      tools: ["Tape measure", "Pencil", "Square", "Saw", "Drill", "Screwdriver", "Clamps", "Sander"],
+      cutList: [
+        { label: "2 × Side", size: "1800 × 300 × 18 mm" },
+        { label: "5 × Shelf", size: "760 × 300 × 18 mm" },
+        { label: "1 × Top", size: "800 × 320 × 18 mm" },
+        { label: "1 × Back Support", size: "760 × 80 × 18 mm" }
+      ],
+      steps: [
+        "Measure and mark the side panels.",
+        "Cut all shelves and supports.",
+        "Sand the cut edges.",
+        "Mark shelf positions on both sides.",
+        "Attach shelves while checking they are square.",
+        "Attach the top.",
+        "Add the rear support.",
+        "Sand and finish the bookshelf."
+      ]
+    },
+    {
+      id: "storage-box",
+      icon: "📦",
+      title: "Wooden Storage Box",
+      description: "A useful wooden box for tools, toys or household storage.",
+      difficulty: "Beginner",
+      time: "2–4 hrs",
+      cost: "£35",
+      materials: ["Timber boards", "Wood screws", "Wood glue", "Hinges if using a lid", "Sandpaper"],
+      tools: ["Tape measure", "Pencil", "Square", "Saw", "Drill", "Screwdriver", "Clamps", "Sander"],
+      cutList: [
+        { label: "2 × Long Side", size: "800 × 300 × 18 mm" },
+        { label: "2 × Short Side", size: "364 × 300 × 18 mm" },
+        { label: "1 × Bottom", size: "764 × 364 × 18 mm" },
+        { label: "1 × Lid", size: "800 × 400 × 18 mm" }
+      ],
+      steps: [
+        "Mark out the four side pieces.",
+        "Cut and sand the timber.",
+        "Assemble the four sides.",
+        "Check the box is square.",
+        "Attach the bottom.",
+        "Fit the lid and hinges if required.",
+        "Sand and finish the box."
+      ]
+    },
+    {
+      id: "workshop-desk",
+      icon: "🛠️",
+      title: "Simple Workshop Desk",
+      description: "A basic sturdy desk for a workshop, office or hobby area.",
+      difficulty: "Intermediate",
+      time: "5–7 hrs",
+      cost: "£80",
+      materials: ["Timber boards", "Wood screws", "Wood glue", "Sandpaper", "Wood finish"],
+      tools: ["Tape measure", "Square", "Saw", "Drill", "Screwdriver", "Clamps", "Sander"],
+      cutList: [
+        { label: "1 × Desktop", size: "1200 × 600 × 20 mm" },
+        { label: "4 × Leg", size: "720 × 70 × 70 mm" },
+        { label: "2 × Long Support", size: "1060 × 90 × 20 mm" },
+        { label: "2 × Short Support", size: "460 × 90 × 20 mm" }
+      ],
+      steps: [
+        "Measure and cut the desktop.",
+        "Cut the four legs.",
+        "Cut the frame supports.",
+        "Build the two side frames.",
+        "Connect the frames together.",
+        "Attach the desktop.",
+        "Check the desk is level and square.",
+        "Sand and apply finish."
+      ]
+    },
+    {
+      id: "raised-bed",
+      icon: "🌱",
+      title: "Raised Garden Bed",
+      description: "A simple raised timber bed for growing plants outdoors.",
+      difficulty: "Beginner",
+      time: "2–3 hrs",
+      cost: "£40",
+      materials: ["Exterior-rated timber", "Exterior-rated screws", "Exterior wood treatment", "Ground fabric if required"],
+      tools: ["Tape measure", "Pencil", "Square", "Saw", "Drill", "Screwdriver"],
+      cutList: [
+        { label: "4 × Long Board", size: "1200 × 200 × 25 mm" },
+        { label: "4 × End Board", size: "600 × 200 × 25 mm" },
+        { label: "4 × Corner Post", size: "400 × 50 × 50 mm" }
+      ],
+      steps: [
+        "Choose a suitable level location.",
+        "Measure and cut the boards.",
+        "Build the two long sides.",
+        "Build the two end sections.",
+        "Connect the four corners.",
+        "Check the bed is square and level.",
+        "Apply suitable exterior treatment."
+      ]
+    },
+    {
+      id: "side-table",
+      icon: "🫖",
+      title: "Simple Side Table",
+      description: "A compact table suitable for a living room, bedroom or hallway.",
+      difficulty: "Beginner",
+      time: "3–4 hrs",
+      cost: "£40",
+      materials: ["Timber boards", "Wood screws", "Wood glue", "Sandpaper", "Wood finish"],
+      tools: ["Tape measure", "Pencil", "Square", "Saw", "Drill", "Screwdriver", "Clamps", "Sander"],
+      cutList: [
+        { label: "1 × Table Top", size: "500 × 400 × 20 mm" },
+        { label: "4 × Leg", size: "450 × 60 × 60 mm" },
+        { label: "2 × Long Support", size: "400 × 70 × 20 mm" },
+        { label: "2 × Short Support", size: "300 × 70 × 20 mm" }
+      ],
+      steps: [
+        "Cut the tabletop.",
+        "Cut the four legs.",
+        "Cut the frame supports.",
+        "Build the frame.",
+        "Attach the legs.",
+        "Attach and align the tabletop.",
+        "Sand all edges.",
+        "Apply the chosen finish."
+      ]
+    }
+  ];
+
+  let currentProject = null;
+  let cameFromSaved = false;
+
+  // =========================================================
+  // STORAGE HELPERS
+  // =========================================================
+  const SAVED_KEY = "woodcraftSaved";
+
+  function getSavedIds() {
+    try {
+      return JSON.parse(localStorage.getItem(SAVED_KEY)) || [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function setSavedIds(ids) {
+    localStorage.setItem(SAVED_KEY, JSON.stringify(ids));
+  }
+
+  function isSaved(id) {
+    return getSavedIds().includes(id);
+  }
+
+  function toggleSaved(id) {
+    let ids = getSavedIds();
+    if (ids.includes(id)) {
+      ids = ids.filter(x => x !== id);
+    } else {
+      ids.push(id);
+    }
+    setSavedIds(ids);
+  }
+
+  function getProgress(id) {
+    try {
+      const raw = localStorage.getItem("progress_" + id);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setProgress(id, completedArray) {
+    localStorage.setItem("progress_" + id, JSON.stringify(completedArray));
+  }
+
+  function progressPercent(project) {
+    const completed = getProgress(project.id);
+    if (!completed) return 0;
+    const done = completed.filter(Boolean).length;
+    return Math.round((done / project.steps.length) * 100);
+  }
+
+  // =========================================================
+  // NAVIGATION
+  // =========================================================
+  function setActiveScreen(id) {
+    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function setActiveNav(name) {
+    document.querySelectorAll(".nav-button").forEach(b => b.classList.remove("active"));
+    const btn = document.querySelector('.nav-button[data-nav="' + name + '"]');
+    if (btn) btn.classList.add("active");
+  }
+
+  function showHome() {
+    setActiveScreen("homeScreen");
+    setActiveNav("home");
+  }
+
+  function showPlans() {
+    renderPlansList();
+    setActiveScreen("plansScreen");
+    setActiveNav("plans");
+  }
+
+  function showBuild() {
+    setActiveScreen("buildScreen");
+    setActiveNav("build");
+  }
+
+  function showTools() {
+    setActiveScreen("toolsScreen");
+    setActiveNav("tools");
+  }
+
+  function showSaved() {
+    renderSavedList();
+    setActiveScreen("savedScreen");
+    setActiveNav("saved");
+  }
+
+  function openProject(id, fromSaved) {
+    const project = projects.find(p => p.id === id);
+    if (!project) return;
+    currentProject = project;
+    cameFromSaved = !!fromSaved;
+    renderIntro(project);
+    setActiveScreen("introScreen");
+  }
+
+  // =========================================================
+  // PLANS LIST + SEARCH
+  // =========================================================
+  function projectCardHTML(project) {
+    const saved = isSaved(project.id) ? "⭐" : "☆";
+    return (
+      '<div class="project-card">' +
+        '<div class="project-image">' + project.icon +
+          '<div class="save-badge">' + saved + '</div>' +
+        '</div>' +
+        '<div class="project-content">' +
+          '<h2 class="project-title">' + project.title + '</h2>' +
+          '<p class="description">' + project.difficulty + ' • ' + project.time + ' • ' + project.cost + '</p>' +
+          '<button class="btn" onclick="openProject(\'' + project.id + '\')">View Plan →</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function renderPlansList() {
+    const query = (document.getElementById("searchBox").value || "").toLowerCase();
+    const filtered = projects.filter(p => p.title.toLowerCase().includes(query));
+    const list = document.getElementById("plansList");
+
+    if (filtered.length === 0) {
+      list.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><p>No projects match your search.</p></div>';
+      return;
+    }
+
+    list.innerHTML = filtered.map(projectCardHTML).join("");
+  }
+
+  // =========================================================
+  // PROJECT INTRO
+  // =========================================================
+  function renderIntro(project) {
+    const saved = isSaved(project.id);
+    const pct = progressPercent(project);
+
+    document.getElementById("introCard").innerHTML =
+      '<div class="project-image">' + project.icon + '</div>' +
+      '<div class="project-content">' +
+        '<h2 class="project-title">' + project.title + '</h2>' +
+        '<p class="description">' + project.description + '</p>' +
+
+        '<div class="details">' +
+          '<div class="detail"><strong>' + project.difficulty + '</strong><span>Difficulty</span></div>' +
+          '<div class="detail"><strong>' + project.time + '</strong><span>Build time</span></div>' +
+          '<div class="detail"><strong>' + project.cost + '</strong><span>Est. cost</span></div>' +
+        '</div>' +
+
+        (pct > 0 ? '<div class="note">You are ' + pct + '% through this project.</div>' : '') +
+
+        '<h3 class="section-title">📐 Cut List</h3>' +
+        '<ul class="list">' +
+          project.cutList.map(c => '<li><strong>' + c.label + '</strong><br>' + c.size + '</li>').join("") +
+        '</ul>' +
+
+        '<h3 class="section-title">🧰 Tools</h3>' +
+        '<ul class="list">' +
+          project.tools.map(t => '<li>' + t + '</li>').join("") +
+        '</ul>' +
+
+        '<h3 class="section-title">🪵 Materials</h3>' +
+        '<ul class="list">' +
+          project.materials.map(m => '<li>' + m + '</li>').join("") +
+        '</ul>' +
+
+        '<div class="btn-row">' +
+          '<button class="btn" onclick="startProject()">' + (pct > 0 ? 'Continue Project →' : 'Start Project →') + '</button>' +
+          '<button class="btn secondary" onclick="toggleSaveCurrent()">' + (saved ? '★ Remove from Saved' : '☆ Save Project') + '</button>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function toggleSaveCurrent() {
+    toggleSaved(currentProject.id);
+    renderIntro(currentProject);
+  }
+
+  // =========================================================
+  // STEP-BY-STEP CHECKLIST
+  // =========================================================
+  function startProject() {
+    renderSteps(currentProject);
+    document.getElementById("stepsBackLink").onclick = function () {
+      setActiveScreen("introScreen");
+    };
+    setActiveScreen("stepsScreen");
+  }
+
+  function renderSteps(project) {
+    let completed = getProgress(project.id);
+    if (!completed || completed.length !== project.steps.length) {
+      completed = new Array(project.steps.length).fill(false);
+      setProgress(project.id, completed);
+    }
+
+    document.getElementById("stepsTitle").textContent = project.title;
+
+    const container = document.getElementById("stepsContainer");
+    container.innerHTML = project.steps.map((stepText, i) => {
+      const checked = completed[i] ? "checked" : "";
+      const doneClass = completed[i] ? "done" : "";
+      return (
+        '<li>' +
+          '<input type="checkbox" ' + checked + ' onchange="toggleStep(' + i + ')">' +
+          '<span>' +
+            '<div class="step-title-line">Step ' + (i + 1) + '</div>' +
+            '<span class="step-text ' + doneClass + '">' + stepText + '</span>' +
+          '</span>' +
+        '</li>'
+      );
+    }).join("");
+
+    updateProgressBar(project);
+  }
+
+  function toggleStep(index) {
+    const completed = getProgress(currentProject.id) || new Array(currentProject.steps.length).fill(false);
+    completed[index] = !completed[index];
+    setProgress(currentProject.id, completed);
+    renderSteps(currentProject);
+  }
+
+  function updateProgressBar(project) {
+    const pct = progressPercent(project);
+    document.getElementById("progressBar").style.width = pct + "%";
+    document.getElementById("progressLabel").textContent = pct + "% complete";
+  }
+
+  function finishProject() {
+    const completed = new Array(currentProject.steps.length).fill(true);
+    setProgress(currentProject.id, completed);
+    alert("🎉 Project complete! Great job.");
+    if (cameFromSaved) {
+      showSaved();
+    } else {
+      showHome();
+    }
+  }
+
+  // =========================================================
+  // SAVED SCREEN
+  // =========================================================
+  function renderSavedList() {
+    const ids = getSavedIds();
+    const list = document.getElementById("savedList");
+
+    if (ids.length === 0) {
+      list.innerHTML = '<div class="empty-state"><div class="icon">⭐</div><p>No saved projects yet.<br>Save a plan to track your progress here.</p></div>';
+      return;
+    }
+
+    list.innerHTML = ids.map(id => {
+      const project = projects.find(p => p.id === id);
+      if (!project) return "";
+      const pct = progressPercent(project);
+      return (
+        '<div class="saved-card">' +
+          '<div class="saved-card-top" onclick="openProject(\'' + project.id + '\', true)">' +
+            '<div class="saved-card-icon">' + project.icon + '</div>' +
+            '<div>' +
+              '<div class="saved-card-title">' + project.title + '</div>' +
+              '<div class="saved-card-sub">' + pct + '% complete</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="progress"><div class="progress-bar" style="width:' + pct + '%"></div></div>' +
+          '<button class="btn danger" onclick="removeSaved(\'' + project.id + '\')">Remove</button>' +
+        '</div>'
+      );
+    }).join("");
+  }
+
+  function removeSaved(id) {
+    toggleSaved(id);
+    renderSavedList();
+  }
+
+  // =========================================================
+  // BUILD YOUR OWN — CUT LIST CALCULATOR
+  // =========================================================
+  function generateCutList() {
+    const type = document.getElementById("buildType").value;
+    const width = parseFloat(document.getElementById("buildWidth").value);
+    const height = parseFloat(document.getElementById("buildHeight").value);
+    const depth = parseFloat(document.getElementById("buildDepth").value);
+    const thickness = parseFloat(document.getElementById("buildThickness").value);
+
+    const errorBox = document.getElementById("buildError");
+    const resultBox = document.getElementById("buildResult");
+    errorBox.innerHTML = "";
+    resultBox.innerHTML = "";
+
+    const values = [width, height, depth, thickness];
+    if (values.some(v => isNaN(v) || v <= 0)) {
+      errorBox.innerHTML = '<div class="error-msg">Please enter a value greater than zero for every field.</div>';
+      return;
+    }
+
+    if (width <= thickness * 2 || depth <= thickness * 2) {
+      errorBox.innerHTML = '<div class="error-msg">Width and depth must be greater than twice the timber thickness.</div>';
+      return;
+    }
+
+    let parts = [];
+
+    if (type === "box") {
+      parts = [
+        { label: "2 × Side", size: height + " × " + depth + " × " + thickness + " mm" },
+        { label: "2 × End", size: height + " × " + (width - 2 * thickness) + " × " + thickness + " mm" },
+        { label: "1 × Bottom", size: (width - 2 * thickness) + " × " + (depth - 2 * thickness) + " × " + thickness + " mm" }
+      ];
+    } else if (type === "shelf") {
+      parts = [
+        { label: "2 × Side", size: height + " × " + depth + " × " + thickness + " mm" },
+        { label: "1 × Top", size: width + " × " + depth + " × " + thickness + " mm" },
+        { label: "1 × Bottom", size: width + " × " + depth + " × " + thickness + " mm" }
+      ];
+    } else if (type === "bench") {
+      parts = [
+        { label: "1 × Seat", size: width + " × " + depth + " × " + thickness + " mm" },
+        { label: "4 × Leg", size: height + " × " + thickness + " × " + thickness + " mm" },
+        { label: "2 × Support", size: (width - 2 * thickness) + " × " + thickness + " × " + thickness + " mm" }
+      ];
+    } else if (type === "table") {
+      parts = [
+        { label: "1 × Top", size: width + " × " + depth + " × " + thickness + " mm" },
+        { label: "4 × Leg", size: height + " × " + thickness + " × " + thickness + " mm" },
+        { label: "2 × Long Support", size: (width - 2 * thickness) + " × " + thickness + " × " + thickness + " mm" },
+        { label: "2 × Short Support", size: (depth - 2 * thickness) + " × " + thickness + " × " + thickness + " mm" }
+      ];
+    }
+
+    resultBox.innerHTML =
+      '<div class="result-box">' +
+        '<h3 class="section-title" style="margin-top:0;">Generated Cut List</h3>' +
+        '<ul class="list">' +
+          parts.map(p => '<li><strong>' + p.label + '</strong><br>' + p.size + '</li>').join("") +
+        '</ul>' +
+      '</div>';
+  }
+
+  // =========================================================
+  // TOOLS — COST CALCULATOR
+  // =========================================================
+  function calculateCost() {
+    const timber = parseFloat(document.getElementById("costTimber").value) || 0;
+    const hardware = parseFloat(document.getElementById("costHardware").value) || 0;
+    const finish = parseFloat(document.getElementById("costFinish").value) || 0;
+    const total = timber + hardware + finish;
+
+    document.getElementById("costResult").innerHTML =
+      '<div class="total-line">Total estimated cost: £' + total.toFixed(2) + '</div>';
+  }
+
+  // =========================================================
+  // INIT
+  // =========================================================
+  renderPlansList();
+</script>
+
+</body>
+</html>
